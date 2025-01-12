@@ -49,7 +49,7 @@ class UserController extends Controller
 
         $user = User::find($request->header('user_id'));
         if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
+            return response()->json(['error' => 'unauthenticated'], 401);
         }
 
         $user->qr_code = $request->code;
@@ -62,7 +62,7 @@ class UserController extends Controller
     {
         $user = User::find($request->header('user_id'));
         if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
+            return response()->json(['error' => 'User not authenticated'], 401);
         }
         return response()->json(['status' => 'success', 'message' => 'User data fetched', 'data' => [
             'id' => $user->id,
