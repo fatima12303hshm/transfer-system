@@ -12,7 +12,7 @@ class UserController extends Controller
     public function loginUser(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id' => 'required|unique:users,id'
+            'id' => 'required'
         ]);
         if ($validator->fails()) {
             return response()->json([
