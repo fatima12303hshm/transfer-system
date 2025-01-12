@@ -7,6 +7,7 @@ use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use function is_numeric;
 
 class TransactionController extends Controller
@@ -17,7 +18,6 @@ class TransactionController extends Controller
         if (!$userId || !is_numeric($userId)) {
             return response()->json(['error' => 'unauthenticated'], 401);
         }
-// package="com.amolg.flutterbarcodescanner"
         $transactions = Transaction::where('sender_id', $userId)
             ->orWhere('receiver_id', $userId)
             ->get()
@@ -47,11 +47,14 @@ class TransactionController extends Controller
 
     public function submitTransaction(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'code' => 'required|exists:users,qr_code',
             'amount' => 'numeric|min:1'
         ]);
 
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
         $userId = $request->header('user_id');
         if (!$userId || !is_numeric($userId)) {
             return response()->json(['error' => 'user id is required'], 400);

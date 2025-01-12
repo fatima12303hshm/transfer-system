@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -9,6 +11,16 @@ class UserController extends Controller
 {
     public function loginUser(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|unique:users,id'
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation errors occurred.',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
         $user = User::find($request->id);
         if ($user) {
             return response()->json(['status' => 'success', 'message' => 'User Authenticated Successfully', 'data' => [
@@ -23,9 +35,17 @@ class UserController extends Controller
 
     public function setQrCode(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'code' => 'required|unique:users,qr_code'
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation errors occurred.',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
 
         $user = User::find($request->header('user_id'));
         if (!$user) {
@@ -51,20 +71,4 @@ class UserController extends Controller
             'qr_code' => $user->qr_code
         ]], 200);
     }
-
-    // public function fetchUserDataFromQR(Request $request)
-    // {
-    //     $request->validate([
-    //         'code' => 'required|exists:users,qr_code'
-    //     ]);
-    //     $user = User::where('qr_code', $request->code)->first();
-    //     if (!$user) {
-    //         return response()->json(['error' => 'User not found'], 404);
-    //     }
-    //     return response()->json(['status' => 'success', 'message' => 'User data fetched', 'data' => [
-    //         'name' => $user->name,
-    //         'balance' => $user->balance,
-    //         'qr_code' => $user->qr_code
-    //     ]], 200);
-    // }
 }
