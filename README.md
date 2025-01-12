@@ -273,7 +273,7 @@ Unauthenticated User (401)
 
 # Transfer Points
 
-Endpoint: POST /transfer-balance
+Endpoint: POST user/transfer-balance
 
 Description
 Transfer points from one user to another based on the recipient's QR code.
