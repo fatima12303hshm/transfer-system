@@ -17,7 +17,7 @@ class TransactionController extends Controller
         if (!$userId || !is_numeric($userId)) {
             return response()->json(['error' => 'unauthenticated'], 401);
         }
-
+// package="com.amolg.flutterbarcodescanner"
         $transactions = Transaction::where('sender_id', $userId)
             ->orWhere('receiver_id', $userId)
             ->get()
@@ -40,7 +40,7 @@ class TransactionController extends Controller
                 'sent' => $sentTransactions,
                 'received' => $receivedTransactions,
             ],
-        ]);
+        ], 200);
     }
 
 
