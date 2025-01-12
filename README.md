@@ -1,67 +1,335 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Transpoint Server
 
-## About Laravel
+# Table's Values:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# User Data
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+INSERT INTO `users` (`id`, `name`, `qr_code`, `balance`, `created_at`, `updated_at`) VALUES
+(1, 'Rayan Hashem', '12025-01-12 14:53:26.967621', 35, NULL, '2025-01-12 10:53:34'),
+(2, 'Fatima Hashem', '22025-01-12 14:56:54.645548', 8, NULL, '2025-01-12 10:57:02'),
+(3, 'Ali Hashem', '32025-01-12 15:11:56.566049', 10, NULL, '2025-01-12 11:12:04'),
+(4, 'Nour Hashem', NULL, 10, NULL, NULL);
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Transaction Data
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+INSERT INTO `transactions` (`id`, `amount`, `sender_id`, `receiver_id`, `created_at`, `updated_at`) VALUES
+(3, 5, 2, 1, '2025-01-11 23:45:04', '2025-01-11 23:45:04'),
+(4, 5, 2, 1, '2025-01-11 23:45:30', '2025-01-11 23:45:30'),
+(5, 5, 3, 1, '2025-01-11 23:48:48', '2025-01-11 23:48:48'),
+(6, 1, 3, 1, '2025-01-12 00:04:36', '2025-01-12 00:04:36'),
+(7, 3, 2, 1, '2025-01-12 09:12:51', '2025-01-12 09:12:51'),
+(8, 3, 2, 1, '2025-01-12 09:50:52', '2025-01-12 09:50:52'),
+(9, 3, 2, 1, '2025-01-12 09:57:41', '2025-01-12 09:57:41'),
+(10, 2, 2, 3, '2025-01-12 10:06:22', '2025-01-12 10:06:22'),
+(11, 1, 2, 3, '2025-01-12 10:07:15', '2025-01-12 10:07:15'),
+(12, 1, 2, 3, '2025-01-12 10:07:21', '2025-01-12 10:07:21'),
+(13, 2, 2, 3, '2025-01-12 10:18:56', '2025-01-12 10:18:56');
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# API Documentation
 
-## Code of Conduct
+baseURL= "http:your_domain:8000/api/"
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# User Management
 
-## Security Vulnerabilities
+# Login User
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Endpoint: POST /login
 
-## License
+Description
+Authenticate a user by their id.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# transfer-system
+Request: 
+
+{
+    "id":2   
+}
+
+Response:
+
+Success (200)
+
+{
+    "status": "success",
+    "message": "User Authenticated Successfully",
+    "data": {
+        "id": 2,
+        "name": "Fatima Hashem",
+        "balance": 8,
+        "qr_code": "22025-01-12 14:56:54.645548"
+    }
+}
+
+Validation Error (422)
+
+{
+  "success": false,
+  "message": "Validation errors occurred.",
+  "errors": {
+    "id": ["The id field is required."]
+  }
+}
+
+User Not Found (404)
+json
+Copy code
+{
+  "error": "User Not Found"
+}
+
+
+# Generate QR Code
+
+Endpoint: PATCH user/generate-qr
+
+Description
+Update the QR code for the logged-in user.
+
+Request
+Headers
+user_id: The ID of the authenticated user.
+
+Body (JSON)
+
+{
+    "code":"42025-01-12 14:56:54.645548"
+}
+
+Response: 
+
+Success (200)
+{
+    "status": "success",
+    "message": "QR code updated successfully"
+}
+
+
+Validation Error (422)
+
+{
+  "success": false,
+  "message": "Validation errors occurred.",
+  "errors": {
+    "code": ["The code field is required.", "The code has already been taken."]
+  }
+}
+
+Unauthorized (401)
+
+{
+  "error": "unauthenticated"
+}
+
+# Get User Data
+
+Endpoint: GET user/get-user-data
+
+Description
+Retrieve the logged-in user's data.
+
+Request
+Headers
+user_id: The ID of the authenticated user.
+
+Response
+
+Success (200): 
+
+{
+    "status": "success",
+    "message": "User data fetched",
+    "data": {
+        "id": 4,
+        "name": "Nour Hashem",
+        "balance": 10,
+        "qr_code": "42025-01-12 14:56:54.645548"
+    }
+}
+
+{
+  "status": "success",
+  "message": "User data fetched",
+  "data": {
+    "id": 1,
+    "name": "John Doe",
+    "balance": 10,
+    "qr_code": "user-qr-code"
+  }
+}
+
+
+Unauthorized (401)
+ 
+{
+  "error": "User not authenticated"
+}
+
+
+#
+
+# Transaction Management
+
+# Fetch User Transactions
+Endpoint GET user/transactions
+
+Description
+Retrieve all transactions associated with a user, separated into sent and received transactions.
+
+Request
+Headers
+user_id (required): The ID of the authenticated user.
+
+
+Response
+Success (200)
+
+{
+    "status": "success",
+    "data": {
+        "sent": [
+            {
+                "id": 1,
+                "amount": 1,
+                "sender_id": 3,
+                "receiver_id": 2,
+                "created_at": "2025-01-11T02:22:59.000000Z",
+                "updated_at": null,
+                "name": "Fatima Hashem"
+            },
+            {
+                "id": 5,
+                "amount": 5,
+                "sender_id": 3,
+                "receiver_id": 1,
+                "created_at": "2025-01-12T01:48:48.000000Z",
+                "updated_at": "2025-01-12T01:48:48.000000Z",
+                "name": "Rayan Hashem"
+            },
+            {
+                "id": 6,
+                "amount": 1,
+                "sender_id": 3,
+                "receiver_id": 1,
+                "created_at": "2025-01-12T02:04:36.000000Z",
+                "updated_at": "2025-01-12T02:04:36.000000Z",
+                "name": "Rayan Hashem"
+            }
+        ],
+        "received": [
+            {
+                "id": 10,
+                "amount": 2,
+                "sender_id": 2,
+                "receiver_id": 3,
+                "created_at": "2025-01-12T12:06:22.000000Z",
+                "updated_at": "2025-01-12T12:06:22.000000Z",
+                "name": "Fatima Hashem"
+            },
+            {
+                "id": 11,
+                "amount": 1,
+                "sender_id": 2,
+                "receiver_id": 3,
+                "created_at": "2025-01-12T12:07:15.000000Z",
+                "updated_at": "2025-01-12T12:07:15.000000Z",
+                "name": "Fatima Hashem"
+            },
+            {
+                "id": 12,
+                "amount": 1,
+                "sender_id": 2,
+                "receiver_id": 3,
+                "created_at": "2025-01-12T12:07:21.000000Z",
+                "updated_at": "2025-01-12T12:07:21.000000Z",
+                "name": "Fatima Hashem"
+            },
+            {
+                "id": 13,
+                "amount": 2,
+                "sender_id": 2,
+                "receiver_id": 3,
+                "created_at": "2025-01-12T12:18:56.000000Z",
+                "updated_at": "2025-01-12T12:18:56.000000Z",
+                "name": "Fatima Hashem"
+            }
+        ]
+    }
+}
+
+Unauthenticated User (401)
+ 
+{
+  "error": "unauthenticated"
+}
+
+# Transfer Points
+
+Endpoint: POST /transfer-balance
+
+Description
+Transfer points from one user to another based on the recipient's QR code.
+
+Request
+Headers
+user_id (required): The ID of the sender.
+Body (JSON)
+
+{
+    "code":"42025-01-12 14:56:54.645548", 
+    "amount": 6
+}
+
+Response:
+
+Success (201):
+{
+    "status": "success",
+    "message": "points transferred successfully"
+}
+
+
+Validation Error (422)
+
+{
+  "error": {
+    "code": ["The code field is required.", "The selected code is invalid."],
+    "amount": ["The amount must be at least 1."]
+  }
+}
+
+Missing User ID (400)
+
+{
+  "error": "user id is required"
+}
+
+Unauthenticated User (401)
+ 
+{
+  "error": "unauthenticated"
+}
+ 
+Receiver Not Found (404)
+ 
+{
+  "error": "receiver not found"
+}
+Insufficient Balance (422)
+ 
+{
+  "error": "Insufficient balance"
+}
+Same User Transaction (422)
+ 
+{
+  "error": "Cannot transfer to the same user"
+}
